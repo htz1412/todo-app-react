@@ -1,0 +1,42 @@
+.todo-container {
+  width: 100%;
+  height: 100%;
+  max-height: calc(100vh - 7rem);
+  max-width: 37.5rem;
+  background-color: var(--page-background);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.todo,
+.add-task {
+  height: 100%;
+  border-radius: 0.625rem;
+  background-color: var(--white);
+}
+
+.add-task {
+  max-height: 10rem;
+}
+
+.status-tabs {
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.status-tab-group {
+  display: flex;
+  text-decoration: none;
+  list-style: none;
+  margin-inline: 1.5rem;
+  gap: 0.625rem;
+}
+
+.status-tab-group li {
+  padding: 1rem 0.625rem;
+  cursor: pointer;
+}
+
+.status-tab-group .active-tab {
+  color: var(--primary-color);
+}

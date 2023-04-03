@@ -1,5 +1,12 @@
+import Page from "./features/layout/components/Page";
+import TodoContainer from "./features/todo/components/TodoContainer";
+
 const App = () => {
-  return <h1>Hello World</h1>;
-}
- 
+  return (
+    <Page>
+      <TodoContainer />
+    </Page>
+  );
+};
+
 export default App;
