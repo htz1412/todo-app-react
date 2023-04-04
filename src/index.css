@@ -2,6 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-size: 16px;
-  font-family: 'SF Pro Display';
+  font-family: "SF Pro Display";
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 600;
 }

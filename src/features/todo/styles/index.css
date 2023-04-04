@@ -21,7 +21,7 @@
 }
 
 .status-tabs {
-  border-bottom: 1px solid #e1e1e1;
+  border-bottom: 1px solid var(--divider);
 }
 
 .status-tab-group {
@@ -32,11 +32,40 @@
   gap: 0.625rem;
 }
 
-.status-tab-group li {
+.status-tab-group .tab, .status-tab-group .active-tab{
   padding: 1rem 0.625rem;
   cursor: pointer;
+  color: var(--inactive-tab);
 }
 
 .status-tab-group .active-tab {
   color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.todo-content {
+  padding: 1rem 1.5rem;
+}
+
+.task-status-toggle-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.todo-item {
+  display: flex;
+}
+
+.todo-item-details > span {
+  display: block;
+}
+
+.todo-title{
+  font-weight: 400;
+}
+
+.todo-description {
+  color: var(--todo-description);
+  font-size: 14px;
+  font-weight: 300;
 }
