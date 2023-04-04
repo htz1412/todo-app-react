@@ -39,4 +39,9 @@
 
 .status-tab-group .active-tab {
   color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.todo-content {
+  padding: 1rem 2.5rem;
 }

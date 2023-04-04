@@ -1,11 +1,17 @@
 const StatusTabs = (props) => {
-  const tabs = ["All", "Todo", "In Progress", "Completed"];
+  const { tabs, selectedTab, setSelectedTab } = props;
 
   return (
     <div className="status-tabs">
       <ul className="status-tab-group">
         {tabs.map((tab) => (
-          <li key={tab}>{tab}</li>
+          <li
+            key={tab}
+            className={tab === selectedTab ? "active-tab" : ''}
+            onClick={() => setSelectedTab(tab)}
+          >
+            {tab}
+          </li>
         ))}
       </ul>
     </div>
