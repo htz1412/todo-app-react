@@ -16,9 +16,15 @@
   background-color: var(--white);
 }
 
+.todo, .add-task {
+  box-shadow: 0rem 0rem 1.25rem 0.25rem #0078ff26;
+}
+
 .add-task {
   max-height: 10rem;
 }
+
+/* Status tab styling */
 
 .status-tabs {
   border-bottom: 1px solid var(--divider);
@@ -32,7 +38,8 @@
   gap: 0.625rem;
 }
 
-.status-tab-group .tab, .status-tab-group .active-tab{
+.status-tab-group .tab,
+.status-tab-group .active-tab {
   padding: 1rem 0.625rem;
   cursor: pointer;
   color: var(--inactive-tab);
@@ -44,28 +51,74 @@
 }
 
 .todo-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.625rem;
   padding: 1rem 1.5rem;
 }
+
+/* Todo item styling */
 
 .task-status-toggle-icon {
   width: 1.25rem;
   height: 1.25rem;
 }
 
-.todo-item {
+.todo-item,
+.todo-item-details,
+.todo-item-attributes,
+.todo-item-attribute {
   display: flex;
 }
 
-.todo-item-details > span {
-  display: block;
+.todo-item {
+  column-gap: 1rem;
 }
 
-.todo-title{
+.todo-item-details {
+  flex-direction: column;
+  row-gap: 0.1rem;
+}
+
+.todo-item .completed .todo-title {
+  color: var(--subtitle);
   font-weight: 400;
 }
 
+.todo-item-attributes {
+  column-gap: 0.5rem;
+  margin-top: 0.1rem;
+}
+
+.todo-item-attribute,
 .todo-description {
-  color: var(--todo-description);
-  font-size: 14px;
   font-weight: 300;
+}
+
+.todo-item-attribute {
+  align-items: center;
+  column-gap: 0.5rem;
+  color: var(--subtitle);
+}
+
+.todo-title,
+.todo-description {
+  display: block;
+}
+
+.todo-title {
+  font-weight: 500;
+}
+
+.todo-description {
+  color: var(--subtitle);
+}
+
+.todo-item-attribute-seperator {
+  color: var(--subtitle);
+}
+
+.todo-item-seperator {
+  border: 0;
+  border-top: 1px solid var(--divider);
 }

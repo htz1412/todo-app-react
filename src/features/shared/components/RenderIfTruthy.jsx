@@ -1,3 +1,3 @@
-const RenderIfTruthy = (props) => props.value && props.render;
+const RenderIfTruthy = (props) => props.value && props.children;
 
 export default RenderIfTruthy;

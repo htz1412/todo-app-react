@@ -7,9 +7,9 @@ const TodoContent = (props) => {
     <div className="todo-content">
       {todos.map((todo, index) => {
         return (
-          <React.Fragment>
-            <TodoItem key={index} todo={todo} />
-            <br />
+          <React.Fragment key={index}>
+            <TodoItem todo={todo} />
+            <hr className="todo-item-seperator" />
           </React.Fragment>
         );
       })}

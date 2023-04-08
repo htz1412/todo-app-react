@@ -9,6 +9,11 @@ import {
 } from "../../shared/constants/todo";
 
 const TodoContainer = (props) => {
+  const getTodosToDisplay = (statusTab) =>
+    statusTab !== STATUS_TABS.ALL
+      ? todos.filter((x) => x.status === statusTab)
+      : todos;
+
   const statusTabs = [
     STATUS_TABS.ALL,
     STATUS_TABS.TODO,
@@ -47,14 +52,7 @@ const TodoContainer = (props) => {
       status: TODO_STATUSES.COMPLETED,
     },
   ];
-
   const todosToDisplay = getTodosToDisplay(selectedStatusTab);
-
-  function getTodosToDisplay(statusTab) {
-    return statusTab !== STATUS_TABS.ALL
-      ? todos.filter((x) => x.status === statusTab)
-      : todos;
-  }
 
   return (
     <div className="todo-container">
@@ -64,7 +62,7 @@ const TodoContainer = (props) => {
         setSelectedTab={setSelectedStatusTab}
         todos={todosToDisplay}
       />
-      <AddTask></AddTask>
+      <AddTask />
     </div>
   );
 };
