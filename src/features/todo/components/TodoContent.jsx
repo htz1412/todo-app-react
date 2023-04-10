@@ -4,7 +4,7 @@ import TodoItem from "./TodoItem";
 const TodoContent = (props) => {
   const { todos } = props;
   return (
-    <div className="todo-content">
+    <div className="todo-content custom-scroll-bar">
       {todos.map((todo, index) => {
         return (
           <React.Fragment key={index}>

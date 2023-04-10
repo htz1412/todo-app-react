@@ -1,13 +1,13 @@
 import React from "react";
 import IncompleteTaskIcon from "../../../assets/icon_incomplete_task.png";
 import CompleteTaskIcon from "../../../assets/icon_completed_task.png";
-import { TODO_STATUSES } from "../../shared/constants/todo";
+import { TODO_STATUS } from "../../shared/constants/todo";
 import { TODO_PRIORITY_CLASSES } from "./../constants/todoPriorityClasses";
 import TodoItemAttribute from "./TodoItemAttribute";
 
 const TodoItem = (props) => {
   const { todo, key } = props;
-  const isCompletedTask = todo.status === TODO_STATUSES.COMPLETED;
+  const isCompletedTask = todo.status === TODO_STATUS.COMPLETED;
   const StatusToggleIcon = isCompletedTask
     ? CompleteTaskIcon
     : IncompleteTaskIcon;

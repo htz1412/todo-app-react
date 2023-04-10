@@ -1,10 +1,13 @@
 import Page from "./features/layout/components/Page";
 import TodoContainer from "./features/todo/components/TodoContainer";
+import { TodoProvider } from "./features/todo/contexts/TodoProvider";
 
 const App = () => {
   return (
     <Page>
-      <TodoContainer />
+      <TodoProvider>
+        <TodoContainer />
+      </TodoProvider>
     </Page>
   );
 };

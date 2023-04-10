@@ -1,6 +1,6 @@
 :root {
   --page-background: #d5e9ff;
-  --white: #fff;
+  --white-color: #fff;
   --primary-color: #0078ff;
   --divider: #e1e1e1;
   --subtitle: #aaa;
@@ -8,4 +8,6 @@
   --priority-low-color: #4caf50;
   --priority-medium-color: #ffc107;
   --priority-high-color: #e34e43;
+  --scroll-bar-color: #ccc;
+  --outline-button-text-color: #7d7d7d;
 }
