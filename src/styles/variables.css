@@ -5,4 +5,7 @@
   --divider: #e1e1e1;
   --subtitle: #aaa;
   --inactive-tab: #9d9d9d;
+  --priority-low-color: #4caf50;
+  --priority-medium-color: #ffc107;
+  --priority-high-color: #e34e43;
 }

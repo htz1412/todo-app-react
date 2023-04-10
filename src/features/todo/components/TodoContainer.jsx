@@ -22,6 +22,35 @@ const TodoContainer = (props) => {
   ];
   const [selectedStatusTab, setSelectedStatusTab] = useState(STATUS_TABS.ALL);
   const todos = [
+    // {
+    //   title: "Complete main UI components",
+    //   description:
+    //     "Would be good if we include every componenets in design system...",
+    //   dueDate: "6 Apr 2023",
+    //   priority: TODO_PRIORITY.MEDIUM,
+    //   status: TODO_STATUSES.TODO,
+    // },
+    // {
+    //   title: "Brand guidelines",
+    //   description: null,
+    //   dueDate: null,
+    //   priority: TODO_PRIORITY.LOW,
+    //   status: TODO_STATUSES.TODO,
+    // },
+    // {
+    //   title: "Find and fix the bug in GJR project",
+    //   description: "Some users are not allowed to enter restrain events",
+    //   dueDate: "9 Apr 2023",
+    //   priority: TODO_PRIORITY.HIGH,
+    //   status: TODO_STATUSES.IN_PROGRESS,
+    // },
+    // {
+    //   title: "Landing page design",
+    //   description: null,
+    //   dueDate: "10 Apr 2023",
+    //   priority: TODO_PRIORITY.HIGH,
+    //   status: TODO_STATUSES.COMPLETED,
+    // },
     {
       title: "Complete main UI components",
       description:
@@ -32,7 +61,7 @@ const TodoContainer = (props) => {
     },
     {
       title: "Brand guidelines",
-      description: null,
+      description: "Dummy description",
       dueDate: null,
       priority: TODO_PRIORITY.LOW,
       status: TODO_STATUSES.TODO,
@@ -41,15 +70,30 @@ const TodoContainer = (props) => {
       title: "Find and fix the bug in GJR project",
       description: "Some users are not allowed to enter restrain events",
       dueDate: "9 Apr 2023",
-      priority: TODO_PRIORITY.MEDIUM,
+      priority: TODO_PRIORITY.HIGH,
       status: TODO_STATUSES.IN_PROGRESS,
     },
     {
       title: "Landing page design",
-      description: null,
+      description: "Dummy description",
       dueDate: "10 Apr 2023",
       priority: TODO_PRIORITY.HIGH,
       status: TODO_STATUSES.COMPLETED,
+    },
+    {
+      title: "Brand guidelines",
+      description: "Dummy description",
+      dueDate: null,
+      priority: TODO_PRIORITY.LOW,
+      status: TODO_STATUSES.TODO,
+    },
+    {
+      title: "Complete main UI components",
+      description:
+        "Would be good if we include every componenets in design system...",
+      dueDate: "6 Apr 2023",
+      priority: TODO_PRIORITY.MEDIUM,
+      status: TODO_STATUSES.TODO,
     },
   ];
   const todosToDisplay = getTodosToDisplay(selectedStatusTab);

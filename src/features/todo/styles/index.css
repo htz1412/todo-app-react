@@ -55,6 +55,17 @@
   flex-direction: column;
   row-gap: 0.625rem;
   padding: 1rem 1.5rem;
+  height: 25rem;
+  overflow-y: auto;
+}
+
+.todo-content::-webkit-scrollbar{
+  width: 0.3rem;
+}
+
+.todo-content::-webkit-scrollbar-thumb{
+  background-color: #ccc;
+  border-radius: 0.625rem;
 }
 
 /* Todo item styling */
@@ -80,7 +91,7 @@
   row-gap: 0.1rem;
 }
 
-.todo-item .completed .todo-title {
+.completed .todo-title {
   color: var(--subtitle);
   font-weight: 400;
 }
@@ -99,6 +110,18 @@
   align-items: center;
   column-gap: 0.5rem;
   color: var(--subtitle);
+}
+
+.incomplete .todo-item-attributes .priority-low{
+  color: var(--priority-low-color);
+}
+
+.incomplete .todo-item-attribute.priority-medium{
+  color: var(--priority-medium-color);
+}
+
+.incomplete .todo-item-attribute.priority-high{
+  color: var(--priority-high-color);
 }
 
 .todo-title,
