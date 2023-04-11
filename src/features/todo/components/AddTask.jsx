@@ -1,4 +1,4 @@
-import { forwardRef, useContext, useState } from "react";
+import { forwardRef, useContext, useRef, useState } from "react";
 import ReactDatePicker from "react-datepicker";
 import ReactDropdown from "react-dropdown";
 
@@ -10,6 +10,12 @@ import { TodoContext } from "../contexts/TodoProvider";
 
 import "react-datepicker/dist/react-datepicker.css";
 import "react-dropdown/style.css";
+
+const DateTimeButton = forwardRef(({ value, onClick }, ref) => (
+  <button className="button outline medium" onClick={onClick} ref={ref}>
+    {value}
+  </button>
+));
 
 const AddTask = (props) => {
   const priorities = [
@@ -30,14 +36,8 @@ const AddTask = (props) => {
   const [status, setStatus] = useState();
   const { todos, setTodos } = useContext(TodoContext);
 
-  const CustomInputDateTime = forwardRef(({ value, onClick }, ref) => (
-    <Button variant="outline" onClick={onClick} ref={ref}>
-      {value}
-    </Button>
-  ));
-
   const addNewTask = () => {
-    if (title || description || dueDate || priority || status) {
+    if (title) {
       const newTask = {
         title,
         description,
@@ -86,7 +86,7 @@ const AddTask = (props) => {
             selected={dueDate}
             onChange={setDueDate}
             value={dueDate || "Due Date"}
-            customInput={<CustomInputDateTime />}
+            customInput={<DateTimeButton />}
           />
           <ReactDropdown
             options={priorities}
@@ -104,7 +104,6 @@ const AddTask = (props) => {
           />
         </div>
         <div className="confirmation-actions">
-          {/* <Button variant="outline">Cancel</Button> */}
           <Button onClick={addNewTask}>Add Task</Button>
         </div>
       </div>
