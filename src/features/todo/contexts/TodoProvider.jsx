@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-const TodoContext = createContext([]);
+const TodoContext = createContext();
 
 const TodoProvider = ({ children }) => {
   const [todos, setTodos] = useState([]);

@@ -1,16 +1,22 @@
 import StatusTabs from "./StatusTabs";
+import { StatusTabProvider } from "../contexts/StatusTabProvider";
 import TodoContent from "./TodoContent";
+import { STATUS_TABS } from "../../shared/constants/todo";
 
 const Todo = (props) => {
-  const { tabs, selectedTab, setSelectedTab, todos } = props;
+  const statusTabs = [
+    STATUS_TABS.ALL,
+    STATUS_TABS.TODO,
+    STATUS_TABS.IN_PROGRESS,
+    STATUS_TABS.COMPLETED,
+  ];
+
   return (
     <div className="todo">
-      <StatusTabs
-        tabs={tabs}
-        selectedTab={selectedTab}
-        setSelectedTab={setSelectedTab}
-      />
-      <TodoContent todos={todos} />
+      <StatusTabProvider>
+        <StatusTabs tabs={statusTabs} />
+        <TodoContent />
+      </StatusTabProvider>
     </div>
   );
 };

@@ -1,5 +1,9 @@
+import { useContext } from "react";
+import { StatusTabContext } from "../contexts/StatusTabProvider";
+
 const StatusTabs = (props) => {
-  const { tabs, selectedTab, setSelectedTab } = props;
+  const { tabs } = props;
+  const { selectedTab, setSelectedTab } = useContext(StatusTabContext);
 
   return (
     <div className="status-tabs">

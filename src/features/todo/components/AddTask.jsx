@@ -1,6 +1,7 @@
-import { forwardRef, useContext, useRef, useState } from "react";
+import { forwardRef, useContext, useState } from "react";
 import ReactDatePicker from "react-datepicker";
 import ReactDropdown from "react-dropdown";
+import { v4 as uuidv4 } from "uuid";
 
 import Button from "../../shared/components/Button";
 
@@ -31,14 +32,15 @@ const AddTask = (props) => {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [dueDate, setDueDate] = useState();
-  const [priority, setPriority] = useState();
-  const [status, setStatus] = useState();
+  const [dueDate, setDueDate] = useState(null);
+  const [priority, setPriority] = useState(null);
+  const [status, setStatus] = useState(null);
   const { todos, setTodos } = useContext(TodoContext);
 
   const addNewTask = () => {
     if (title) {
       const newTask = {
+        id: uuidv4(),
         title,
         description,
         dueDate: (dueDate && dueDate.toLocaleDateString()) || null,
@@ -55,9 +57,9 @@ const AddTask = (props) => {
   const clearValues = () => {
     setTitle("");
     setDescription("");
-    setDueDate();
-    setPriority();
-    setStatus();
+    setDueDate(null);
+    setPriority(null);
+    setStatus(null);
   };
 
   return (

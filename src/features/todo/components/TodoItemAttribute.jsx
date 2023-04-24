@@ -4,12 +4,12 @@ import PropTypes from "prop-types";
 const TodoItemAttribute = (props) => {
   const { value, classNames, iconClassNames, addSeperator } = props;
   return (
-    <RenderIfTruthy value={value}>
+    <RenderIfTruthy condition={value}>
       <div className={`todo-item-attribute ${classNames}`}>
         <i className={iconClassNames} aria-hidden="true"></i>
         <span>{value}</span>
       </div>
-      <RenderIfTruthy value={addSeperator}>
+      <RenderIfTruthy condition={addSeperator}>
         <span className="todo-item-attribute-seperator">&bull;</span>
       </RenderIfTruthy>
     </RenderIfTruthy>
