@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 import "font-awesome/css/font-awesome.min.css";
 import 'react-swipeable-list/dist/styles.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './index.css';
 import '../src/styles/variables.css';

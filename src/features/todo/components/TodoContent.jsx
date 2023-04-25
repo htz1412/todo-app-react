@@ -8,7 +8,6 @@ import {
 import { TodoContext } from "../contexts/TodoProvider";
 import { STATUS_TABS, TODO_STATUS } from "../../shared/constants/todo";
 import { StatusTabContext } from "../contexts/StatusTabProvider";
-import RenderIfTruthy from "../../shared/components/RenderIfTruthy";
 
 const TodoContent = (props) => {
   const { selectedTab } = useContext(StatusTabContext);
@@ -19,16 +18,16 @@ const TodoContent = (props) => {
       ? todos.filter((x) => x.status === selectedTab)
       : todos;
 
-  const renderTrailingActions = () => (
+  const renderTrailingActions = (todoId) => (
     <TrailingActions>
-      <SwipeAction onClick={() => {}}>Delete</SwipeAction>
+      <SwipeAction onClick={() => handleDelete(todoId)}>Delete</SwipeAction>
     </TrailingActions>
   );
 
   const handleDelete = (todoId) => {
-    // if (todoId) {
-    //   setTodos(todosToDisplay.filter((x) => x.id !== todoId));
-    // }
+    if (todoId) {
+      setTodos(todosToDisplay.filter((x) => x.id !== todoId));
+    }
   };
 
   const toggleTaskStatus = (todoId) => {
@@ -45,7 +44,7 @@ const TodoContent = (props) => {
 
   return (
     <div className="todo-content">
-      <RenderIfTruthy condition={todosToDisplay.length > 0}>
+      {todosToDisplay.length > 0 ? (
         <SwipeableList>
           {todosToDisplay.map((todo) => (
             <TodoItem
@@ -57,7 +56,9 @@ const TodoContent = (props) => {
             />
           ))}
         </SwipeableList>
-      </RenderIfTruthy>
+      ) : (
+        <span>No tasks...</span>
+      )}
     </div>
   );
 };

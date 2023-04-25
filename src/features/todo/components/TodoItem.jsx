@@ -7,7 +7,7 @@ import TodoItemAttribute from "./TodoItemAttribute";
 import { SwipeableListItem } from "react-swipeable-list";
 
 const TodoItem = (props) => {
-  const DELETE_THRESHOLD = 30;
+  const DELETE_THRESHOLD = 40;
   const { todo, renderTrailingActions, handleDelete, toggleTaskStatus } = props;
   const isCompletedTask = todo.status === TODO_STATUS.COMPLETED;
   const StatusToggleIcon = isCompletedTask
@@ -20,7 +20,7 @@ const TodoItem = (props) => {
 
   return (
     <SwipeableListItem
-      trailingActions={renderTrailingActions()}
+      trailingActions={renderTrailingActions(todo.id)}
       onSwipeProgress={(progress) => {
         if (progress >= DELETE_THRESHOLD) {
           handleDelete(todo.id);
