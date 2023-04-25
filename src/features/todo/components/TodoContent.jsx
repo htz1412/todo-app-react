@@ -24,15 +24,25 @@ const TodoContent = (props) => {
     </TrailingActions>
   );
 
+  const getTodoById = (todoId) => todos.find((x) => x.id === todoId) || null;
+
   const handleDelete = (todoId) => {
     if (todoId) {
       setTodos(todosToDisplay.filter((x) => x.id !== todoId));
     }
   };
 
+  const handleUpdateTodoField = (e, todoId) => {
+    const todo = getTodoById(todoId);
+    if (todo) {
+      todo[e.name] = e.value;
+      setTodos([...todos]);
+    }
+  };
+
   const toggleTaskStatus = (todoId) => {
-    if (todoId) {
-      const todo = todos.find((x) => x.id === todoId);
+    const todo = getTodoById(todoId);
+    if (todo) {
       todo.status =
         todo.status !== TODO_STATUS.COMPLETED
           ? TODO_STATUS.COMPLETED
@@ -50,6 +60,7 @@ const TodoContent = (props) => {
             <TodoItem
               key={todo.id}
               todo={todo}
+              handleUpdateTodoField={handleUpdateTodoField}
               handleDelete={handleDelete}
               toggleTaskStatus={toggleTaskStatus}
               renderTrailingActions={renderTrailingActions}
@@ -57,7 +68,7 @@ const TodoContent = (props) => {
           ))}
         </SwipeableList>
       ) : (
-        <span className="text-secondary">No tasks...</span>
+        <h6 className="text-secondary">No tasks</h6>
       )}
     </div>
   );

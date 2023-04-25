@@ -6,10 +6,18 @@ import { TODO_PRIORITY_CLASSES } from "./../constants/todoPriorityClasses";
 import TodoItemAttribute from "./TodoItemAttribute";
 import { SwipeableListItem } from "react-swipeable-list";
 import EditTaskModal from "./EditTaskModal";
+import RenderIfTruthy from "../../shared/components/RenderIfTruthy";
 
 const TodoItem = (props) => {
   const DELETE_THRESHOLD = 40;
-  const { todo, renderTrailingActions, handleDelete, toggleTaskStatus } = props;
+  const {
+    key,
+    todo,
+    renderTrailingActions,
+    handleDelete,
+    toggleTaskStatus,
+    handleUpdateTodoField,
+  } = props;
   const [showEditTaskModal, setShowEditTaskModal] = useState(false);
 
   let allowEditTask = true;
@@ -38,7 +46,7 @@ const TodoItem = (props) => {
   };
 
   return (
-    <React.Fragment>
+    <React.Fragment key={key}>
       <SwipeableListItem
         trailingActions={renderTrailingActions(todo.id)}
         onSwipeProgress={handleOnSwipeProgress}
@@ -69,13 +77,16 @@ const TodoItem = (props) => {
           </div>
         </div>
       </SwipeableListItem>
-      <EditTaskModal
-        todo={todo}
-        modalProps={{
-          show: showEditTaskModal,
-          onHide: () => setShowEditTaskModal(false),
-        }}
-      />
+      <RenderIfTruthy condition={showEditTaskModal}>
+        <EditTaskModal
+          todo={todo}
+          handleUpdateTodoField={handleUpdateTodoField}
+          modalProps={{
+            show: showEditTaskModal,
+            onHide: () => setShowEditTaskModal(false),
+          }}
+        />
+      </RenderIfTruthy>
     </React.Fragment>
   );
 };

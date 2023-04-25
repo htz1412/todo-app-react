@@ -1,9 +1,9 @@
-import { forwardRef, useContext, useState } from "react";
+import { forwardRef, useContext } from "react";
 import ReactDatePicker from "react-datepicker";
 import ReactDropdown from "react-dropdown";
-import { v4 as uuidv4 } from "uuid";
+import { Button } from "react-bootstrap";
 
-import Button from "../../shared/components/Button";
+// import Button from "../../shared/components/Button";
 
 import { TODO_STATUS } from "../../shared/constants/todo";
 import { TODO_PRIORITY } from "../../shared/constants/todo";
@@ -11,6 +11,7 @@ import { TodoContext } from "../contexts/TodoProvider";
 
 import "react-datepicker/dist/react-datepicker.css";
 import "react-dropdown/style.css";
+import useNewTask from "../hooks/useNewTask";
 
 const DateTimeButton = forwardRef(({ value, onClick }, ref) => (
   <button className="button outline medium" onClick={onClick} ref={ref}>
@@ -30,47 +31,28 @@ const AddTask = (props) => {
     TODO_STATUS.COMPLETED,
   ];
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [dueDate, setDueDate] = useState(null);
-  const [priority, setPriority] = useState(null);
-  const [status, setStatus] = useState(null);
   const { todos, setTodos } = useContext(TodoContext);
+  const { newTask, updateNewTaskField, prepareNewTask, clearNewTask } =
+    useNewTask();
 
   const addNewTask = () => {
-    if (title) {
-      const newTask = {
-        id: uuidv4(),
-        title,
-        description,
-        dueDate: (dueDate && dueDate.toLocaleDateString()) || null,
-        priority,
-        status: status || TODO_STATUS.TODO,
-        createdDate: new Date(),
-      };
-
+    if (newTask.title) {
+      prepareNewTask();
       setTodos([...todos, newTask]);
-      clearValues();
+      clearNewTask();
     }
-  };
-
-  const clearValues = () => {
-    setTitle("");
-    setDescription("");
-    setDueDate(null);
-    setPriority(null);
-    setStatus(null);
   };
 
   return (
     <div className="add-task">
       <input
         id="title"
+        name="title"
         type="text"
-        placeholder="Add a task"
+        placeholder="Add a title"
         className="todo-input input-title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        value={newTask.title}
+        onChange={updateNewTaskField}
       />
       <textarea
         name="description"
@@ -79,34 +61,42 @@ const AddTask = (props) => {
         cols="10"
         rows="5"
         placeholder="Description..."
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
+        value={newTask.description}
+        onChange={updateNewTaskField}
       />
       <div className="todo-action-group">
         <div className="todo-item-attribute-actions">
           <ReactDatePicker
-            selected={dueDate}
-            onChange={setDueDate}
-            value={dueDate || "Due Date"}
+            name="dueDate"
+            selected={newTask.dueDate && newTask.dueDate.toLocaleDateString()}
+            onChange={updateNewTaskField}
+            value={
+              (newTask.dueDate && newTask.dueDate.toLocaleDateString()) ||
+              "Due Date"
+            }
             customInput={<DateTimeButton />}
           />
           <ReactDropdown
+            name="priority"
             options={priorities}
-            onChange={(x) => setPriority(x.value)}
-            value={priority}
+            onChange={updateNewTaskField}
+            value={newTask.priority}
             placeholder="Priority"
             className="todo-priority"
           />
           <ReactDropdown
+            name="status"
             options={statuses}
-            onChange={(x) => setStatus(x.value)}
-            value={status}
+            onChange={updateNewTaskField}
+            value={newTask.status}
             placeholder="Status"
             className="todo-status"
           />
         </div>
         <div className="confirmation-actions">
-          <Button onClick={addNewTask}>Add Task</Button>
+          <Button size="sm" disabled={!newTask.title} onClick={addNewTask}>
+            Add Task
+          </Button>
         </div>
       </div>
     </div>

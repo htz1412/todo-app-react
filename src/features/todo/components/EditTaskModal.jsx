@@ -1,7 +1,8 @@
 import { Button, Form, Modal } from "react-bootstrap";
 
 const EditTaskModal = (props) => {
-  const { todo, modalProps } = props;
+  const { todo, modalProps, handleUpdateTodoField } = props;
+
   return (
     <Modal
       {...modalProps}
@@ -15,14 +16,25 @@ const EditTaskModal = (props) => {
       </Modal.Header>
       <Modal.Body>
         <Form>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Group className="mb-3" controlId="taskTitle">
             <Form.Label>Title</Form.Label>
-            <Form.Control type="text" placeholder="Add title" />
+            <Form.Control
+              type="text"
+              placeholder="Add a title"
+              value={todo.title || ""}
+              onChange={(e) => handleUpdateTodoField(e, todo.id)}
+            />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Group className="mb-3" controlId="taskDescription">
             <Form.Label>Description</Form.Label>
-            <Form.Control style={{ resize: "none" }} as="textarea" rows={3} />
+            <Form.Control
+              style={{ resize: "none" }}
+              as="textarea"
+              rows={3}
+              value={todo.decription || ""}
+              onChange={(e) => handleUpdateTodoField(e, todo.id)}
+            />
           </Form.Group>
         </Form>
       </Modal.Body>
