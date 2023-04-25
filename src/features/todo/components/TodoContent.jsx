@@ -57,7 +57,7 @@ const TodoContent = (props) => {
           ))}
         </SwipeableList>
       ) : (
-        <span>No tasks...</span>
+        <span className="text-secondary">No tasks...</span>
       )}
     </div>
   );
