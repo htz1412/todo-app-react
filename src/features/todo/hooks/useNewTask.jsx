@@ -12,9 +12,9 @@ function useNewTask() {
   };
   const [newTask, setTask] = useState(initialTaskValues);
 
-  function updateNewTaskField({ target: field }) {
+  function updateNewTaskField({ field, value }) {
     setTask((oldTask) => {
-      oldTask[field.name] = field.value;
+      oldTask[field] = value;
       return { ...oldTask };
     });
   }
