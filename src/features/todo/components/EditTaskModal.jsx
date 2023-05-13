@@ -32,7 +32,7 @@ const EditTaskModal = (props) => {
               style={{ resize: "none" }}
               as="textarea"
               rows={3}
-              value={todo.decription || ""}
+              value={todo.description || ""}
               onChange={(e) => handleUpdateTodoField(e, todo.id)}
             />
           </Form.Group>

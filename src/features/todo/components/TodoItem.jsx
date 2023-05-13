@@ -11,7 +11,6 @@ import RenderIfTruthy from "../../shared/components/RenderIfTruthy";
 const TodoItem = (props) => {
   const DELETE_THRESHOLD = 40;
   const {
-    key,
     todo,
     renderTrailingActions,
     handleDelete,
@@ -45,8 +44,11 @@ const TodoItem = (props) => {
     allowEditTask = true;
   };
 
+  const convertDateToLocalString = (date) =>
+    date ? new Date(date).toLocaleDateString() : null;
+
   return (
-    <React.Fragment key={key}>
+    <React.Fragment>
       <SwipeableListItem
         trailingActions={renderTrailingActions(todo.id)}
         onSwipeProgress={handleOnSwipeProgress}
@@ -64,10 +66,12 @@ const TodoItem = (props) => {
             <span className="todo-description">{todo.description}</span>
             <div className="todo-item-attributes">
               <TodoItemAttribute
-                value={todo.dueDate}
+                value={convertDateToLocalString(todo.dueDate)}
                 iconClassNames="fa fa-calendar-o"
-                addSeperator
               />
+              <RenderIfTruthy condition={todo.dueDate && todo.priority}>
+                <span className="todo-item-attribute-seperator">&bull;</span>
+              </RenderIfTruthy>
               <TodoItemAttribute
                 classNames={TODO_PRIORITY_CLASSES[todo.priority]}
                 value={todo.priority}
