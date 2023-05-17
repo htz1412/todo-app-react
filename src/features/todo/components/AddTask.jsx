@@ -5,8 +5,8 @@ import { Button, Dropdown, DropdownButton } from "react-bootstrap";
 import { TodoContext } from "../contexts/TodoProvider";
 import useNewTask from "../hooks/useNewTask";
 
-import { TODO_STATUS, TODO_PRIORITY } from "../../shared/constants/todo";
 import { TASK_FIELD } from "../constants/taskFields";
+import { PRIORITIES, STATUSES } from "./../constants/addTaskConstants";
 
 import "react-datepicker/dist/react-datepicker.css";
 import "react-dropdown/style.css";
@@ -18,17 +18,6 @@ const DateTimeButton = forwardRef(({ value, onClick }, ref) => (
 ));
 
 const AddTask = (props) => {
-  const priorities = [
-    TODO_PRIORITY.LOW,
-    TODO_PRIORITY.MEDIUM,
-    TODO_PRIORITY.HIGH,
-  ];
-  const statuses = [
-    TODO_STATUS.TODO,
-    TODO_STATUS.IN_PROGRESS,
-    TODO_STATUS.COMPLETED,
-  ];
-
   const { todos, setTodos } = useContext(TodoContext);
   const { newTask, updateNewTaskField, prepareNewTask, clearNewTask } =
     useNewTask();
@@ -51,7 +40,7 @@ const AddTask = (props) => {
         className="todo-input input-title"
         value={newTask.title}
         onChange={({ target }) =>
-          updateNewTaskField({ field: TASK_FIELD.TITLE, value: target.value })
+          updateNewTaskField(TASK_FIELD.TITLE, target.value)
         }
       />
       <textarea
@@ -63,10 +52,7 @@ const AddTask = (props) => {
         placeholder="Description..."
         value={newTask.description}
         onChange={({ target }) =>
-          updateNewTaskField({
-            field: TASK_FIELD.DESCRIPTION,
-            value: target.value,
-          })
+          updateNewTaskField(TASK_FIELD.DESCRIPTION, target.value)
         }
       />
       <div className="todo-action-group">
@@ -75,7 +61,7 @@ const AddTask = (props) => {
             name="dueDate"
             selected={newTask.dueDate}
             onChange={(date) => {
-              updateNewTaskField({ field: TASK_FIELD.DUE_DATE, value: date });
+              updateNewTaskField(TASK_FIELD.DUE_DATE, date);
             }}
             value={newTask.dueDate || "Due Date"}
             customInput={<DateTimeButton />}
@@ -85,14 +71,15 @@ const AddTask = (props) => {
             id="priority"
             title={newTask.priority || "Priority"}
             onSelect={(priority) =>
-              updateNewTaskField({
-                field: TASK_FIELD.PRIORITY,
-                value: priority,
-              })
+              updateNewTaskField(TASK_FIELD.PRIORITY, priority)
             }
           >
-            {priorities.map((priority) => (
-              <Dropdown.Item key={priority} eventKey={priority} active={newTask.priority === priority}>
+            {PRIORITIES.map((priority) => (
+              <Dropdown.Item
+                key={priority}
+                eventKey={priority}
+                active={newTask.priority === priority}
+              >
                 {priority}
               </Dropdown.Item>
             ))}
@@ -101,14 +88,9 @@ const AddTask = (props) => {
             variant="secondary"
             id="status"
             title={newTask.status || "Status"}
-            onSelect={(status) =>
-              updateNewTaskField({
-                field: TASK_FIELD.STATUS,
-                value: status,
-              })
-            }
+            onSelect={(status) => updateNewTaskField(TASK_FIELD.STATUS, status)}
           >
-            {statuses.map((status) => (
+            {STATUSES.map((status) => (
               <Dropdown.Item
                 key={status}
                 eventKey={status}

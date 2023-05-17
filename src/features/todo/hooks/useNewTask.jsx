@@ -2,7 +2,7 @@ import { useState } from "react";
 import { v4 as uuid } from "uuid";
 import { TODO_STATUS } from "../../shared/constants/todo";
 
-function useNewTask() {
+function useNewTask(task = null) {
   const initialTaskValues = {
     title: "",
     description: "",
@@ -10,9 +10,9 @@ function useNewTask() {
     priority: null,
     status: TODO_STATUS.TODO,
   };
-  const [newTask, setTask] = useState(initialTaskValues);
+  const [newTask, setTask] = useState(task || initialTaskValues);
 
-  function updateNewTaskField({ field, value }) {
+  function updateNewTaskField(field, value) {
     setTask((oldTask) => {
       oldTask[field] = value;
       return { ...oldTask };

@@ -32,12 +32,15 @@ const TodoContent = (props) => {
     }
   };
 
-  const handleUpdateTodoField = (e, todoId) => {
-    const todo = getTodoById(todoId);
-    if (todo) {
-      todo[e.name] = e.value;
-      setTodos([...todos]);
-    }
+  const handleUpdateTodoField = (updatedTask) => {
+    setTodos((todos) =>
+      todos.map((task) => {
+        if (task.id === updatedTask.id) {
+          return { ...updatedTask };
+        }
+        return task;
+      })
+    );
   };
 
   const toggleTaskStatus = (todoId) => {
