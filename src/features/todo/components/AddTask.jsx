@@ -31,7 +31,7 @@ const AddTask = (props) => {
   };
 
   return (
-    <div className="add-task">
+    <div id="add-task-form-container">
       <input
         id="title"
         name="title"
@@ -102,6 +102,9 @@ const AddTask = (props) => {
           </DropdownButton>
         </div>
         <div className="confirmation-actions">
+          <Button variant="secondary" onClick={props.onToggleNewTaskForm}>
+            Cancel
+          </Button>
           <Button disabled={!newTask.title} onClick={addNewTask}>
             Add Task
           </Button>
