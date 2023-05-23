@@ -1,5 +1,7 @@
 import { useContext } from "react";
 import { StatusTabContext } from "../contexts/StatusTabProvider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 
 const StatusTabs = (props) => {
   const { tabs } = props;
@@ -18,6 +20,7 @@ const StatusTabs = (props) => {
           </li>
         ))}
       </ul>
+      <FontAwesomeIcon icon={faEllipsisVertical} />
     </div>
   );
 };

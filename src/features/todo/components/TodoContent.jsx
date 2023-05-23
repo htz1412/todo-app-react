@@ -13,6 +13,7 @@ import TodoItem from "./TodoItem";
 import { STATUS_TABS, TODO_STATUS } from "../../shared/constants/todo";
 
 const TodoContent = (props) => {
+  const ANIMATION_DURATION = 600;
   const { selectedTab } = useContext(StatusTabContext);
   const { todos, setTodos } = useContext(TodoContext);
 
@@ -61,8 +62,8 @@ const TodoContent = (props) => {
   return (
     <div className="todo-content">
       {todosToDisplay.length > 0 ? (
-        <SwipeableList>
-          <Fade direction="down" cascade damping={0.1} duration={800}>
+        <SwipeableList className="custom-scroll-bar">
+          <Fade direction="down" cascade damping={0.1} triggerOnce duration={ANIMATION_DURATION}>
             {todosToDisplay.map((todo) => (
               <TodoItem
                 key={todo.id}
@@ -76,7 +77,7 @@ const TodoContent = (props) => {
           </Fade>
         </SwipeableList>
       ) : (
-        <Fade direction="down" duration={800}>
+        <Fade direction="down" duration={ANIMATION_DURATION}>
           <h6 className="text-secondary">No tasks</h6>
         </Fade>
       )}

@@ -7,6 +7,8 @@ import TodoItemAttribute from "./TodoItemAttribute";
 import { SwipeableListItem } from "react-swipeable-list";
 import EditTaskModal from "./EditTaskModal";
 import RenderIfTruthy from "../../shared/components/RenderIfTruthy";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendar, faFlag } from "@fortawesome/free-regular-svg-icons";
 
 const TodoItem = (props) => {
   const DELETE_THRESHOLD = 40;
@@ -67,7 +69,7 @@ const TodoItem = (props) => {
             <div className="todo-item-attributes">
               <TodoItemAttribute
                 value={convertDateToLocalString(todo.dueDate)}
-                iconClassNames="fa fa-calendar-o"
+                icon={<FontAwesomeIcon icon={faCalendar} />}
               />
               <RenderIfTruthy condition={todo.dueDate && todo.priority}>
                 <span className="todo-item-attribute-seperator">&bull;</span>
@@ -75,7 +77,7 @@ const TodoItem = (props) => {
               <TodoItemAttribute
                 classNames={TODO_PRIORITY_CLASSES[todo.priority]}
                 value={todo.priority}
-                iconClassNames="fa fa-flag-o"
+                icon={<FontAwesomeIcon icon={faFlag} />}
               />
             </div>
           </div>
