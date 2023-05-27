@@ -1,5 +1,11 @@
+import { useContext } from "react";
+import { StatusTabContext } from "../contexts/StatusTabProvider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+
 const StatusTabs = (props) => {
-  const { tabs, selectedTab, setSelectedTab } = props;
+  const { tabs } = props;
+  const { selectedTab, setSelectedTab } = useContext(StatusTabContext);
 
   return (
     <div className="status-tabs">
@@ -7,13 +13,14 @@ const StatusTabs = (props) => {
         {tabs.map((tab) => (
           <li
             key={tab}
-            className={tab === selectedTab ? "active-tab" : ''}
+            className={tab === selectedTab ? "active-tab" : "tab"}
             onClick={() => setSelectedTab(tab)}
           >
             {tab}
           </li>
         ))}
       </ul>
+      <FontAwesomeIcon icon={faEllipsisVertical} />
     </div>
   );
 };

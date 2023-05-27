@@ -2,46 +2,33 @@ import React, { useState } from "react";
 import Todo from "./Todo";
 import "../styles/index.css";
 import AddTask from "./AddTask";
+import { Button } from "react-bootstrap";
 
 const TodoContainer = (props) => {
-  const tabs = ["All", "Todo", "In Progress", "Completed"];
-  const [selectedTab, setSelectedTab] = useState(tabs[0]);
-  const todos = [
-    {
-      title: "Complete main UI components",
-      description:
-        "Would be good if we include every componenets in design system...",
-      dueDate: "6 Apr 2023",
-      priority: "Medium",
-      status: "Todo",
-    },
-    {
-      title: "Landing page design",
-      description: null,
-      dueDate: "10 Apr 2023",
-      priority: "Hard",
-      status: "Completed",
-    },
-    {
-      title: "Brand guidelines",
-      description: null,
-      dueDate: null,
-      priority: "Low",
-      status: "Todo",
-    },
-  ];
+  const toggleNewTaskForm = () => {
+    const addTaskButton = document.getElementById("add-task-button");
+    addTaskButton.classList.toggle("collapsed");
 
-  const activeTodos = todos.filter((x) => x.status === selectedTab);
+    const addTaskFormContainer = document.getElementById(
+      "add-task-form-container"
+    );
+    addTaskFormContainer.classList.toggle("expanded");
+  };
 
   return (
     <div className="todo-container">
-      <Todo
-        tabs={tabs}
-        selectedTab={selectedTab}
-        setSelectedTab={setSelectedTab}
-        todos={activeTodos}
-      />
-      <AddTask></AddTask>
+      <Todo />
+      <div id="add-task-container">
+        <Button
+          id="add-task-button"
+          className="w-100"
+          variant="secondary"
+          onClick={toggleNewTaskForm}
+        >
+          + Add Task
+        </Button>
+        <AddTask onToggleNewTaskForm={toggleNewTaskForm} />
+      </div>
     </div>
   );
 };
